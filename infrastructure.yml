@@ -1,0 +1,22 @@
+cookbooks:
+- annoyances:
+# - java:
+# - ark:
+- rubygems:
+- build-essential:
+- ntp:
+- showoff:
+- fundamentals:
+
+roles:
+- base:
+- fundamentals:
+
+nodes:
+- ec2 1:
+  - recipe[annoyances],role[base],role[fundamentals]
+  - -S mray -i ~/.ssh/mray.pem -x ubuntu -I ami-0fac7566 -f m1.small -d chef-full
+
+# - rackspace 1:
+#   - role[base],role[fundamentals]
+#   - --image 49 --flavor 2 -d chef-full
