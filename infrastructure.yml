@@ -2,7 +2,11 @@ cookbooks:
 - annoyances:
 - ntp:
 - build-essential:
+- yum:
+- runit:
+- git:
 - ruby:
+- xml:
 - showoff:
 - fundamentals:
 
@@ -13,7 +17,7 @@ roles:
 nodes:
 - ec2 1:
   - recipe[annoyances],role[base],role[fundamentals]
-  - -S mray -i ~/.ssh/mray.pem -x ubuntu -I ami-e8815b81 -f m1.small -d chef-full
+  - -S mray -i ~/.ssh/mray.pem -x ubuntu -I ami-e8815b81 -f m1.small --prerelease
 
 # - rackspace 1:
 #   - role[base],role[fundamentals]
