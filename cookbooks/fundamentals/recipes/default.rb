@@ -28,7 +28,7 @@ git "#{Chef::Config[:file_cache_path]}/chef-fundamentals" do
   action :sync
 end
 
-execute "bundle install" do
+execute "bundle install --path vendor/bundle" do
   cwd "#{Chef::Config[:file_cache_path]}/chef-fundamentals"
   subscribes :run, resources(:git => "#{Chef::Config[:file_cache_path]}/chef-fundamentals")
 end
