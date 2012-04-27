@@ -7,6 +7,7 @@ cookbooks:
 - git:
 - ruby:
 - xml:
+  - 1.0.3
 - showoff:
 - fundamentals:
 
@@ -17,8 +18,4 @@ roles:
 nodes:
 - ec2 1:
   - recipe[annoyances],role[base],role[fundamentals]
-  - -S mray -i ~/.ssh/mray.pem -x ubuntu -I ami-e8815b81 -f m1.small --prerelease
-
-# - rackspace 1:
-#   - role[base],role[fundamentals]
-#   - --image 49 --flavor 2 -d chef-full
+  - -S mray -G default,showoff -i ~/.ssh/mray.pem -x ubuntu -I ami-e8815b81 -f m1.small

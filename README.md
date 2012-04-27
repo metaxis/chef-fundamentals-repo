@@ -1,7 +1,7 @@
 Overview
 ========
 
-Every Chef installation needs a Chef Repository. This one was created for installing the Opscode Chef Fundamentals training on a node with Showoff already configured. This repo fires up an Ubuntu 11.10 instance on EC2.
+Every Chef installation needs a Chef Repository. This one was created for installing the Opscode Chef Fundamentals training on a node with Showoff already configured. This repo fires up an Ubuntu 11.10 instance on EC2. You will need to have a "showoff" security group with port 9090 open.
 
 Spiceweasel
 ===========

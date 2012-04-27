@@ -33,13 +33,8 @@ execute "bundle install" do
   subscribes :run, resources(:git => "#{Chef::Config[:file_cache_path]}/chef-fundamentals")
 end
 
-execute "rake present" do
-  cwd "#{Chef::Config[:file_cache_path]}/chef-fundamentals"
-  subscribes :run, resources(:execute => "bundle install")
-end
-
-# #start showoff
-execute "bundle exec showoff serve" do
-  cwd "#{Chef::Config[:file_cache_path]}/chef-fundamentals/slides"
-  subscribes :run, resources(:execute => "rake present")
+runit_service "fundamentals" do
+  options({
+      :path => "#{Chef::Config[:file_cache_path]}/chef-fundamentals/slides"}.merge(params)
+    )
 end

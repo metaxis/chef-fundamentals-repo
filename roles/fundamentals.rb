@@ -3,7 +3,8 @@ description "Default run_list for Fundamentals Showoff machine"
 run_list(
   "recipe[ruby::1.9.1]",
   "recipe[build-essential]",
-  "recipe[git]",
   "recipe[showoff]",
+  "recipe[runit]",
+  "recipe[git]",
   "recipe[fundamentals]"
   )
