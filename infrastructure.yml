@@ -43,9 +43,3 @@ nodes:
 - rackspace 10:
   - recipe[annoyances],role[base],role[users],role[target]
   - -i training_rsa -I 119 -f 2
-
-#private key is in the GitHub repo
-
-#remove Chef from target machines with
-#knife ssh "role:target" "sudo rm -vrf /etc/chef /var/chef" -x ubuntu -i training_rsa -a cloud.public_hostname
-#knife ssh "role:target" "sudo gem uninstall chef ohai -x" -x ubuntu -i training_rsa -a cloud.public_hostname
