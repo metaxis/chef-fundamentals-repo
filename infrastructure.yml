@@ -1,6 +1,8 @@
 cookbooks:
 - annoyances:
 - ntp:
+- users:
+- sudo:
 - build-essential:
 - yum:
 - runit:
@@ -13,9 +15,37 @@ cookbooks:
 
 roles:
 - base:
+- users:
+- workstation:
+- target:
 - fundamentals:
+
+data bags:
+  - users:
+    - *
 
 nodes:
 - ec2 1:
   - recipe[annoyances],role[base],role[fundamentals]
   - -S mray -G default,showoff -i ~/.ssh/mray.pem -x ubuntu -I ami-e8815b81 -f m1.small
+- ec2 10:
+  - recipe[annoyances],role[base],role[users],role[workstation]
+  - -S mray -G default -i training_rsa -x ubuntu -I ami-e8815b81 -f m1.small
+- ec2 10:
+  - recipe[annoyances],role[base],role[users],role[target]
+  - -S mray -G default -i training_rsa -x ubuntu -I ami-e8815b81 -f m1.small
+- rackspace 1:
+  - recipe[annoyances],role[base],role[fundamentals]
+  - -i ~/.ssh/mray.pem -I 119 -f 3
+- rackspace 10:
+  - recipe[annoyances],role[base],role[users],role[workstation]
+  - -i training_rsa -I 119 -f 2
+- rackspace 10:
+  - recipe[annoyances],role[base],role[users],role[target]
+  - -i training_rsa -I 119 -f 2
+
+#private key is in the GitHub repo
+
+#remove Chef from target machines with
+#knife ssh "role:target" "sudo rm -vrf /etc/chef /var/chef" -x ubuntu -i training_rsa -a cloud.public_hostname
+#knife ssh "role:target" "sudo gem uninstall chef ohai -x" -x ubuntu -i training_rsa -a cloud.public_hostname
