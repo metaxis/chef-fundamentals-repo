@@ -22,7 +22,7 @@ roles:
 
 data bags:
   - users:
-    - *
+    - "*"
 
 nodes:
 - ec2 1:

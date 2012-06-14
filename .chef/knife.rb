@@ -1,3 +1,4 @@
+raise "You must set the ORGNAME environment variable" if ENV['ORGNAME'].nil?
 current_dir = File.dirname(__FILE__)
 user = ENV['OPSCODE_USER'] || ENV['USER']
 log_level                :info
@@ -14,9 +15,9 @@ cookbook_path            ["#{current_dir}/../cookbooks"]
 # all your credentials are belong to us
 
 # AWS
-knife[:aws_access_key_id] = "#{ENV['AWS_ACCESS_KEY_ID']}"
-knife[:aws_secret_access_key] = "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+knife[:aws_access_key_id]       = ENV['AWS_ACCESS_KEY_ID']
+knife[:aws_secret_access_key]   = ENV['AWS_SECRET_ACCESS_KEY']
 
 # Rackspace Cloud
-knife[:rackspace_api_username] = "#{ENV['RACKSPACE_USERNAME']}"
-knife[:rackspace_api_key] = "#{ENV['RACKSPACE_API_KEY']}"
+knife[:rackspace_api_username]  = ENV['RACKSPACE_USERNAME']
+knife[:rackspace_api_key]       = ENV['RACKSPACE_API_KEY']
