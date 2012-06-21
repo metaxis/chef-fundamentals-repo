@@ -1,0 +1,10 @@
+source "https://rubygems.org"
+
+gem "rake"
+gem "chef", ">= 0.10"
+gem "knife-ec2"
+gem "knife-rackspace"
+#gem "knife-openstack", :git => "https://github.com/mattray/knife-openstack.git", :branch => "0.6.0"
+gem "sinatra", "~> 1.3.2"
+gem "spiceweasel"
+gem "ubuntu_ami"

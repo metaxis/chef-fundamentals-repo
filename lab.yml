@@ -1,0 +1,28 @@
+cookbooks:
+- classroom:
+- knife-workstation:
+
+roles:
+- classroom:
+- workstation:
+- target:
+
+nodes:
+- ec2 2:
+  - role[workstation]
+  - -x ubuntu -I ami-f4fc5e9d
+- ec2 2:
+  - role[target]
+  - -x ubuntu -I ami-a29943cb
+- ec2 1:
+  - role[classroom]
+  - -x ubuntu -I ami-a29943cb
+- rackspace 2:
+  - role[workstation]
+  - -I 119 -f 2
+- rackspace 2:
+  - role[target]
+  - -I 119 -f 2
+- rackspace 1:
+  - role[classroom]
+  - -I 119 -f 2

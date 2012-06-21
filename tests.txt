@@ -1,0 +1,22 @@
+Test all the things!
+
+This is notes for the TODO to test all the things with
+minitest-handler... someday!
+
+# Workstation
+
+/usr/bin/vim
+/usr/bin/emacs
+/opt/SublimeText2/sublime_text is executable by ubuntu
+
+Xvnc listening on :5901
+knife in $PATH
+chef version is correct
+
+$EDITOR is set to vim by default
+
+ssh as ubuntu/opscodechef
+
+# Target
+
+ssh as ubuntu/opscodechef

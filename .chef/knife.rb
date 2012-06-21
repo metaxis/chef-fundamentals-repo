@@ -1,4 +1,4 @@
-raise "You must set the ORGNAME environment variable" if ENV['ORGNAME'].nil?
+raise "You must set the ORGNAME environment variable to your trainer's organization on Opscode Hosted Chef." if ENV['ORGNAME'].nil?
 current_dir = File.dirname(__FILE__)
 user = ENV['OPSCODE_USER'] || ENV['USER']
 log_level                :info
@@ -12,11 +12,12 @@ cache_type               'BasicFile'
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )
 cookbook_path            ["#{current_dir}/../cookbooks"]
 
-# all your credentials are belong to us
+knife[:distro] = "student"
 
 # AWS
 knife[:aws_access_key_id]       = ENV['AWS_ACCESS_KEY_ID']
 knife[:aws_secret_access_key]   = ENV['AWS_SECRET_ACCESS_KEY']
+knife[:aws_ssh_key_id]          = ENV['AWS_SSH_KEY']
 
 # Rackspace Cloud
 knife[:rackspace_api_username]  = ENV['RACKSPACE_USERNAME']

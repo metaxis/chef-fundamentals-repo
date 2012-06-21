@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <font size="6">
+      <p><a href="https://opscode-chef-training.s3.amazonaws.com/ChefWorkshop-CheatSheet.pdf">CheatSheet!</a></p>
+      <pre>
+# Workstations (SSH or VNC display :1)
+<% @workstations.each_with_index do |n,i| -%>
+<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %> # workstation
+<% end -%>
+
+# Target nodes (SSH)
+<% @targets.each_with_index do |n,i| -%>
+<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %> # target node
+<% end -%>
+      </pre>
+    </font>
+  </body>
+</html>

@@ -1,4 +1,3 @@
 name "workstation"
-description "Used for tagging which boxes are workstations"
-run_list(
-  )
+description "Used to identify 'knife' workstations, and set them up"
+run_list "recipe[knife-workstation]"
