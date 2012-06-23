@@ -18,59 +18,25 @@
 # limitations under the License.
 #
 
-file "/etc/vim/vimrc.local" do
-  content <<-EOH
-set number
-set laststatus=2
-set ruler
-set backupdir=~/.vimswaps,/tmp
-set directory=~/.vimswaps,/tmp
-set backspace=indent,eol,start
-set autoindent
-set smartindent
-autocmd FileType ruby set tabstop=2
-autocmd FileType ruby set softtabstop=2
-autocmd FileType ruby set expandtab
-EOH
+cookbook_file "/etc/vim/vimrc.local" do
+  source "vimrc.local"
   mode 00644
 end
 
-file "/etc/motd.tail" do
-  content <<-EOH
-************************************************************************
-Welcome to Opscode Chef Fundamentals.
-
-This system is the *workstation* system provided for your use to
-complete the course's hands on exercises. The following software is
-installed:
-
-* Chef
-* Git
-* Vim
-* Emacs
-* Sublime Text 2
-
-Some handy defaults for editing Ruby in Vim have been configured in
-/etc/vim/vimrc.local. You're welcome to copy your favorite editor
-configuration, too.
-
-Don't forget to export the EDITOR shell variable. It is vim by default,
-but you can use nano or emacs.
-
-export EDITOR=emacs
-export EDITOR=nano
-export EDITOR=\"sublime_text -w\"
-
-In ~/.bashrc.
-************************************************************************
-
-EOH
+cookbook_file "/etc/motd.tail" do
+  source "motd.tail"
   mode 00644
 end
 
-file "/etc/profile.d/knife_editor.sh" do
-  content "export EDITOR=/usr/bin/vim"
-  mode 00644
+
+ruby_block "add-EDITOR-bashrc" do
+  block do
+    editor_line = "[[ ! -z $SSH_TTY ]] && export EDITOR=/usr/bin/vim || export EDITOR='/opt/SublimeText2/sublime_text -w'"
+    bashrc = Chef::Util::FileEdit.new("/home/ubuntu/.bashrc")
+    bashrc.insert_line_if_no_match(/#{editor_line}/, editor_line)
+    bashrc.write_file
+  end
+  action :create
 end
 
 remote_file "/tmp/SublimeText2.tar.bz2" do
@@ -92,4 +58,16 @@ end
 file "/etc/profile.d/sublime_path.sh" do
   content "export PATH=$PATH:/opt/SublimeText2\n"
   mode 00644
+end
+
+directory "/home/ubuntu/.config/sublime-text-2/Packages/User" do
+  recursive true
+  owner "ubuntu"
+end
+
+package "ttf-inconsolata"
+
+cookbook_file "/home/ubuntu/.config/sublime-text-2/Packages/User/Preferences.sublime-settings" do
+  source "Preferences.sublime-settings"
+  owner "ubuntu"
 end

@@ -1,0 +1,27 @@
+************************************************************************
+Welcome to Opscode Chef Fundamentals.
+
+This system is the *workstation* system provided for your use to
+complete the course's hands on exercises. The following software is
+installed:
+
+* Chef
+* Git
+* Vim
+* Emacs
+* Sublime Text 2
+
+Some handy defaults for editing Ruby in Vim have been configured in
+/etc/vim/vimrc.local. You're welcome to copy your favorite editor
+configuration, too.
+
+Don't forget to export the EDITOR shell variable. It is vim by default,
+but you can use nano or emacs.
+
+export EDITOR=emacs
+export EDITOR=nano
+export EDITOR=\"/opt/SublimeText2/sublime_text -w\"
+
+In ~/.bashrc.
+************************************************************************
+

@@ -30,6 +30,7 @@ vim-nox
 emacs23-nox
 emacs-goodies-el
 gnome-core
+ttf-inconsolata
 vnc4server
 gedit
 x11vnc
@@ -37,15 +38,9 @@ x11vnc
 
 rmpkgs = %w{libruby1.8 ruby1.8 libruby ruby ec2-ami-tools}
 
-file "/etc/apt/sources.list.d/multiverse.list" do
-  content <<-EOH
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise multiverse
-deb http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse
-deb-src http://us-east-1.ec2.archive.ubuntu.com/ubuntu/ precise-updates multiverse
-deb http://security.ubuntu.com/ubuntu precise-security multiverse
-deb-src http://security.ubuntu.com/ubuntu precise-security multiverse
-EOH
+template "/etc/apt/sources.list.d/multiverse.list" do
+  source "multiverse.list.erb"
+  mode 00644
 end
 
 execute "apt-get update" do

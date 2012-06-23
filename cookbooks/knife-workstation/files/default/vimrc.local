@@ -1,0 +1,11 @@
+set number
+set laststatus=2
+set ruler
+set backupdir=~/.vimswaps,/tmp
+set directory=~/.vimswaps,/tmp
+set backspace=indent,eol,start
+set autoindent
+set smartindent
+autocmd FileType ruby set tabstop=2
+autocmd FileType ruby set softtabstop=2
+autocmd FileType ruby set expandtab
