@@ -5,12 +5,12 @@
       <pre>
 # Workstations (SSH or VNC display :1)
 <% @workstations.each_with_index do |n,i| -%>
-<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %> # workstation
+<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %>-workstation
 <% end -%>
 
 # Target nodes (SSH)
 <% @targets.each_with_index do |n,i| -%>
-<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %> # target node
+<%= n['cloud']['public_ipv4'] %> opstrain<%= i + 1 %>-target
 <% end -%>
       </pre>
     </font>
