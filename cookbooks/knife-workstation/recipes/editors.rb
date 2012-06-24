@@ -39,7 +39,7 @@ ruby_block "add-EDITOR-bashrc" do
   action :create
 end
 
-remote_file "/tmp/SublimeText2.tar.bz2" do
+remote_file File.join(Chef::Config[:file_cache_path], "SublimeText2.tar.bz2") do
   arch = node['kernel']['machine'] =~ /x86_64/ ? "%20x64" : ""
   source "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202%20Build%202181#{arch}.tar.bz2"
   not_if { ::File.symlink?("/opt/SublimeText2") }
