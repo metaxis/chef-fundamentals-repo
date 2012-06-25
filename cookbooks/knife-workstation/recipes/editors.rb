@@ -39,7 +39,9 @@ ruby_block "add-EDITOR-bashrc" do
   action :create
 end
 
-remote_file File.join(Chef::Config[:file_cache_path], "SublimeText2.tar.bz2") do
+sbl_tar = File.join(Chef::Config[:file_cache_path], "SublimeText2.tar.bz2")
+
+remote_file sbl_tar do
   arch = node['kernel']['machine'] =~ /x86_64/ ? "%20x64" : ""
   source "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202%20Build%202181#{arch}.tar.bz2"
   not_if { ::File.symlink?("/opt/SublimeText2") }
@@ -47,7 +49,7 @@ end
 
 execute "install sublimetext2" do
   command <<-EOH
-tar -jxf /tmp/SublimeText2.tar.bz2 -C /opt
+tar -jxf #{sbl_tar} -C /opt
 EOH
 end
 
