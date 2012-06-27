@@ -43,7 +43,7 @@ sbl_tar = File.join(Chef::Config[:file_cache_path], "SublimeText2.tar.bz2")
 
 remote_file sbl_tar do
   arch = node['kernel']['machine'] =~ /x86_64/ ? "%20x64" : ""
-  source "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202%20Build%202181#{arch}.tar.bz2"
+  source "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0#{arch}.tar.bz2"
   not_if { ::File.symlink?("/opt/SublimeText2") }
 end
 
