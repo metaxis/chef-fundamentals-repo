@@ -38,6 +38,8 @@ x-window-manager &
 EOH
 end
 
+execute "chown -R ubuntu:ubuntu /home/ubuntu"
+
 template "/etc/init.d/vncserver" do
   source "vncserver.init.erb"
   mode 00755
